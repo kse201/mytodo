@@ -1,0 +1,12 @@
+[env]
+CARGO_MAKE_EXTEND_WORKSPACE_MAKEFILE = "true"
+
+[tasks.default]
+clear = true
+dependencies = ["build"]
+
+[tasks.todo]
+clear = true
+command = "cargo"
+args = ["build", "-p", "backend", "--bin", "todo"]
+dependencies = ["build"]
