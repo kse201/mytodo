@@ -16,6 +16,7 @@ enum Msg {
 }
 
 fn update(msg: Msg, model: &mut Model, _orders: &mut impl Orders<Msg>) {
+    println!("foo");
     match msg {
         Msg::FetchedTasks(Ok(mut result)) => {
             model.tasks.clear();
@@ -41,12 +42,14 @@ fn fetch_drills() -> impl Future<Item = Msg, Error = Msg> {
     Request::new("http://localhost:8000/tasks/").fetch_json_data(Msg::FetchedTasks)
 }
 
-fn init(_url: Url, orders: &mut impl Orders<Msg>) -> Model {
+fn init(_url: Url, orders: &mut impl Orders<Msg>) -> Init<Model> {
+    println!("init");
     orders.perform_cmd(fetch_drills());
-    Model { tasks: vec![] }
+    Init::new(Model { tasks: vec![] })
 }
 
 #[wasm_bindgen(start)]
 pub fn render() {
+    println!("render");
     seed::App::build(init, update, view).finish().run();
 }

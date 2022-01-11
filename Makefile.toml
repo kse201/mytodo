@@ -10,3 +10,4 @@ clear = true
 command = "cargo"
 args = ["build", "-p", "backend", "--bin", "todo"]
 dependencies = ["build"]
+

@@ -1,0 +1,4 @@
+[tasks.run-backend]
+description = "Start backend server"
+command = "cargo"
+args = ["run", "--bin", "backend"]
