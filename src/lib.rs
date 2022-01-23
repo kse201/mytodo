@@ -1,6 +1,3 @@
-#[macro_use]
-extern crate serde;
-
 use serde::Deserialize;
 use serde::Serialize;
 
@@ -9,6 +6,12 @@ pub struct Task {
     pub id: i32,
     pub title: String,
     pub status: String,
+}
+
+impl Task {
+    pub fn is_completed(&self) -> bool {
+        self.status == "done"
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
